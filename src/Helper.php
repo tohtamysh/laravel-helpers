@@ -137,7 +137,7 @@ class Helper
      */
     public function russianDate($date, $param, $title = false)
     {
-        $date = Carbon::parser($date);
+        $date = Carbon::parse($date);
 
         $days_week = ['воскресенье', 'понедельник', 'вторник', 'среда', 'четверг', 'пятница', 'суббота'];
 
