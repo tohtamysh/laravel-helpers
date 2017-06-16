@@ -1,0 +1,28 @@
+{
+  "name": "tohtamysh/laravel-helpers",
+  "description": "Helper function for Laravel 5",
+  "keywords": [
+    "laravel",
+    "laravel5"
+  ],
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "tohtamysh",
+      "email": "tohtamysh@gmail.com"
+    }
+  ],
+  "homepage": "https://github.com/tohtamysh/laravel-helpers",
+  "require": {
+    "php": ">=5.4.0",
+    "ext-mbstring": "*",
+    "illuminate/support": "5.*",
+    "nesbot/carbon": "~1.21"
+  },
+  "autoload": {
+    "psr-4": {
+      "Tohtamysh\\Helper\\": "src/"
+    }
+  },
+  "minimum-stability": "stable"
+}
