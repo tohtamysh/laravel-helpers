@@ -14,7 +14,7 @@
   ],
   "homepage": "https://github.com/tohtamysh/laravel-helpers",
   "require": {
-    "php": ">=5.4.0",
+    "php": ">=5.5.9",
     "ext-mbstring": "*",
     "illuminate/support": "5.*",
     "nesbot/carbon": "~1.21"
@@ -24,5 +24,14 @@
       "Tohtamysh\\Helper\\": "src/"
     }
   },
-  "minimum-stability": "stable"
+  "extra": {
+    "laravel": {
+      "providers": [
+        "Tohtamysh\\Helper\\HelperServiceProvider"
+      ],
+      "aliases": {
+        "Helper": "Tohtamysh\\Helper\\HelperFacade"
+      }
+    }
+  }
 }
