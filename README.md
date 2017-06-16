@@ -16,21 +16,21 @@ Register the Service Provider by adding it to your project's providers array in 
 );
 ```
 ##### add alias
-```
+```php
 'Helper' => Tohtamysh\Helper\HelperFacade::class,
 ```
 ### Use
 ####Replace russian string to latin string
-```
+```php
 $translite_string = Helper::make($russian_string)
 ```
 ####Get correct russian ending
 *example return 'домов'*
-```
+```php
 $end = Helper::ending(55, 'дом', 'дома', 'домов')
 ```
 ####Get russian date
 *example return 'Января'*
-```
+```php
 $russian_date = Helper::russianDate('2017-01-02', 'month', true)
 ```
