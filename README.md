@@ -6,7 +6,7 @@
 
 ##### run composer
 ``` php
-composer require tohtamysh/laravel-helpers
+composer require tohtamysh/laravel-helpers "~1.0"
 ```
 ##### add service provider
 Register the Service Provider by adding it to your project's providers array in app.php
