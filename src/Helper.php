@@ -99,6 +99,7 @@ class Helper
             "!" => $separator,
             "/" => $separator,
             "\"" => $separator,
+            "-" => $separator,
         ];
 
         foreach ($array_replace as $rus => $lat) {
