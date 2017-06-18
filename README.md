@@ -34,3 +34,7 @@ $end = Helper::ending(55, 'дом', 'дома', 'домов')
 ```php
 $russian_date = Helper::russianDate('2017-01-02', 'month', true)
 ```
+#### Reduces image size without loss of quality.
+```php
+optimizeImage($filePath)
+```

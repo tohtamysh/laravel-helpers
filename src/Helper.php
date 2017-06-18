@@ -3,6 +3,9 @@
 namespace Tohtamysh\Helper;
 
 use Carbon\Carbon;
+use File;
+use Symfony\Component\Process\Exception\ProcessFailedException;
+use Symfony\Component\Process\Process;
 
 class Helper
 {
@@ -173,5 +176,29 @@ class Helper
         }
 
         return $title ? mb_convert_case($out, MB_CASE_TITLE, "UTF-8") : $out;
+    }
+
+    /**
+     * Optimization image with Imagemagick without loss of quality.
+     * Supported formats PNG and JPEG
+     * @param string $filePath
+     */
+    public function optimizeImage($filePath)
+    {
+        $mymeType = File::mimeType($filePath);
+        if ($mymeType === 'image/jpeg') {
+            $command = '/usr/bin/convert ' . $filePath . ' -sampling-factor 4:2:0 -strip -quality 85 -interlace JPEG -colorspace RGB ' . $filePath;
+        }
+        if ($mymeType === 'image/png') {
+            $command = '/usr/bin/convert ' . $filePath . ' -strip ' . $filePath;
+        }
+        if (isset($command)) {
+            $process = new Process($command);
+            try {
+                $process->mustRun();
+            } catch (ProcessFailedException $e) {
+                echo $e->getMessage();
+            }
+        }
     }
 }
