@@ -194,11 +194,7 @@ class Helper
         }
         if (isset($command)) {
             $process = new Process($command);
-            try {
-                $process->mustRun();
-            } catch (ProcessFailedException $e) {
-                echo $e->getMessage();
-            }
+            $process->run();
         }
     }
 }
