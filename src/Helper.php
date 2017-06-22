@@ -93,6 +93,7 @@ class Helper
             "ˮ" => $separator,
             "'" => $separator,
             "`" => $separator,
+            "^" => $separator,
             "\." => $separator,
             "," => $separator,
             ":" => $separator,
@@ -108,7 +109,7 @@ class Helper
             $text = mb_eregi_replace($rus, $lat, $text);
         }
 
-        $text = str_replace(['\\','(',')','*','#','%','?', '^'], $separator, $text);
+        $text = str_replace(['\\','(',')','*','#','%','?'], $separator, $text);
 
         return mb_strtolower(str_replace(' ', $space_separator, $text));
     }
