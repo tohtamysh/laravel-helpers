@@ -91,9 +91,9 @@ class Helper
             $text = mb_eregi_replace($rus, $lat, $text);
         }
 
-        $text = preg_replace('/[^a-zA-Z0-9]/','', $text);
+        $text = preg_replace('/[^a-zA-Z0-9]/','', str_replace(' ', $space_separator, $text));
 
-        return mb_strtolower(str_replace(' ', $space_separator, $text));
+        return mb_strtolower($text);
     }
 
 
