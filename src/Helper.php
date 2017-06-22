@@ -85,31 +85,13 @@ class Helper
             "э" => "e",
             "ю" => "yu",
             "я" => "ya",
-            "«" => $separator,
-            "»" => $separator,
-            "№" => $separator,
-            "Ӏ" => $separator,
-            "’" => $separator,
-            "ˮ" => $separator,
-            "'" => $separator,
-            "`" => $separator,
-            "^" => $separator,
-            "\." => $separator,
-            "," => $separator,
-            ":" => $separator,
-            "<" => $separator,
-            ">" => $separator,
-            "!" => $separator,
-            "/" => $separator,
-            "\"" => $separator,
-            "-" => $separator,
         ];
 
         foreach ($array_replace as $rus => $lat) {
             $text = mb_eregi_replace($rus, $lat, $text);
         }
 
-        $text = str_replace(['\\','(',')','*','#','%','?'], $separator, $text);
+        $text = preg_replace('/[^a-zA-Z0-9]/','', $text);
 
         return mb_strtolower(str_replace(' ', $space_separator, $text));
     }
