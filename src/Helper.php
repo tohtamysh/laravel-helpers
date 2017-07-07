@@ -174,7 +174,7 @@ class Helper
         if ($mymeType === 'image/png') {
             $command = '/usr/bin/convert ' . $filePath . ' -strip ' . $filePath;
         }
-        if (isset($command)) {
+        if (function_exists('proc_open') && isset($command)) {
             $process = new Process($command);
             $process->run();
         }
