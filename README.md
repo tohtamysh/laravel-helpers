@@ -38,3 +38,7 @@ $russian_date = Helper::russianDate('2017-01-02', 'month', true)
 ```php
 optimizeImage($filePath)
 ```
+#### Sort array
+```php
+$out = Helper::arraySort('one', SORT_DESC, 'two', SORT_DESC, $array);
+```

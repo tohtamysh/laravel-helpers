@@ -91,7 +91,7 @@ class Helper
             $text = mb_eregi_replace($rus, $lat, $text);
         }
 
-        $text = preg_replace('/[^a-zA-Z0-9]/',$separator, str_replace(' ', $space_separator, $text));
+        $text = preg_replace('/[^a-zA-Z0-9]/', $separator, str_replace(' ', $space_separator, $text));
 
         return mb_strtolower($text);
     }
@@ -178,5 +178,37 @@ class Helper
             $process = new Process($command);
             $process->run();
         }
+    }
+
+    /*
+     * Sort multi array
+     */
+    public static function arraySort()
+    {
+        $params = func_get_args();
+        $put = array_pop($params);
+
+        if (!is_array($put)) {
+            return false;
+        }
+
+        $multisort_params = array();
+        foreach ($params as $i => $param) {
+            if (is_string($param)) {
+                ${"param_$i"} = array();
+                foreach ($put as $index => $row) {
+                    ${"param_$i"}[$index] = $row[$param];
+                }
+            } else {
+                ${"param_$i"} = $params[$i];
+            }
+
+            $multisort_params[] = &${"param_$i"};
+        }
+        $multisort_params[] = &$put;
+
+        call_user_func_array("array_multisort", $multisort_params);
+
+        return $put;
     }
 }
