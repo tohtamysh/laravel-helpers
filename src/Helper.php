@@ -205,6 +205,7 @@ class Helper
 
             $multisort_params[] = &${"param_$i"};
         }
+
         $multisort_params[] = &$put;
 
         call_user_func_array("array_multisort", $multisort_params);
