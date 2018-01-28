@@ -22,7 +22,7 @@ Register the Service Provider by adding it to your project's providers array in 
 ### Use
 ####Replace russian string to latin string
 ```php
-$translite_string = Helper::make($russian_string)
+$translite_string = Helper::slug($russian_string)
 ```
 ####Get correct russian ending
 *example return 'домов'*

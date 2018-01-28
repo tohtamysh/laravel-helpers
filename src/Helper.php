@@ -9,91 +9,86 @@ use Symfony\Component\Process\Process;
 
 class Helper
 {
-    /**
-     * Replace russian string to latin string
-     * @param string $text Russian string
-     * @param string $separator
-     * @param string $space_separator
-     * @return string
-     */
-    public function translit($text, $separator = '_', $space_separator = '_')
+    public function slug(string $string): string
     {
-        $array_replace = [
-            "А" => "A",
-            "Б" => "B",
-            "В" => "V",
-            "Г" => "G",
-            "Д" => "D",
-            "Е" => "E",
-            "Ё" => "E",
-            "Ж" => "J",
-            "З" => "Z",
-            "И" => "I",
-            "Й" => "Y",
-            "К" => "K",
-            "Л" => "L",
-            "М" => "M",
-            "Н" => "N",
-            "О" => "O",
-            "П" => "P",
-            "Р" => "R",
-            "С" => "S",
-            "Т" => "T",
-            "У" => "U",
-            "Ф" => "F",
-            "Х" => "H",
-            "Ц" => "TS",
-            "Ч" => "CH",
-            "Ш" => "SH",
-            "Щ" => "SCH",
-            "Ъ" => $separator,
-            "Ы" => "YI",
-            "Ь" => $separator,
-            "Э" => "E",
-            "Ю" => "YU",
-            "Я" => "YA",
-            "а" => "a",
-            "б" => "b",
-            "в" => "v",
-            "г" => "g",
-            "д" => "d",
-            "е" => "e",
-            "ё" => "e",
-            "ж" => "j",
-            "з" => "z",
-            "и" => "i",
-            "й" => "y",
-            "к" => "k",
-            "л" => "l",
-            "м" => "m",
-            "н" => "n",
-            "о" => "o",
-            "п" => "p",
-            "р" => "r",
-            "с" => "s",
-            "т" => "t",
-            "у" => "u",
-            "ф" => "f",
-            "х" => "h",
-            "ц" => "ts",
-            "ч" => "ch",
-            "ш" => "sh",
-            "щ" => "sch",
-            "ъ" => "y",
-            "ы" => "yi",
-            "ь" => $separator,
-            "э" => "e",
-            "ю" => "yu",
-            "я" => "ya",
+        $separator = '_';
+
+        $rules = [
+            'А' => 'A',
+            'Б' => 'B',
+            'В' => 'V',
+            'Г' => 'G',
+            'Д' => 'D',
+            'Е' => 'E',
+            'Ё' => 'E',
+            'Ж' => 'J',
+            'З' => 'Z',
+            'И' => 'I',
+            'Й' => 'Y',
+            'К' => 'K',
+            'Л' => 'L',
+            'М' => 'M',
+            'Н' => 'N',
+            'О' => 'O',
+            'П' => 'P',
+            'Р' => 'R',
+            'С' => 'S',
+            'Т' => 'T',
+            'У' => 'U',
+            'Ф' => 'F',
+            'Х' => 'H',
+            'Ц' => 'TS',
+            'Ч' => 'CH',
+            'Ш' => 'SH',
+            'Щ' => 'SCH',
+            'Ъ' => '',
+            'Ы' => 'YI',
+            'Ь' => '',
+            'Э' => 'E',
+            'Ю' => 'YU',
+            'Я' => 'YA',
+            'а' => 'a',
+            'б' => 'b',
+            'в' => 'v',
+            'г' => 'g',
+            'д' => 'd',
+            'е' => 'e',
+            'ё' => 'e',
+            'ж' => 'j',
+            'з' => 'z',
+            'и' => 'i',
+            'й' => 'y',
+            'к' => 'k',
+            'л' => 'l',
+            'м' => 'm',
+            'н' => 'n',
+            'о' => 'o',
+            'п' => 'p',
+            'р' => 'r',
+            'с' => 's',
+            'т' => 't',
+            'у' => 'u',
+            'ф' => 'f',
+            'х' => 'h',
+            'ц' => 'ts',
+            'ч' => 'ch',
+            'ш' => 'sh',
+            'щ' => 'sch',
+            'ъ' => 'y',
+            'ы' => 'yi',
+            'ь' => '',
+            'э' => 'e',
+            'ю' => 'yu',
+            'я' => 'ya',
         ];
 
-        foreach ($array_replace as $rus => $lat) {
-            $text = mb_eregi_replace($rus, $lat, $text);
-        }
+        $string = trim($string);
 
-        $text = preg_replace('/[^a-zA-Z0-9]/', $separator, str_replace(' ', $space_separator, $text));
+        $string = strtr($string, $rules);
 
-        return mb_strtolower($text);
+        $string = mb_strtolower($string);
+
+        return preg_replace('/([^a-zA-Z0-9])+/', $separator, str_replace(' ', $separator, $string));
     }
 
 
@@ -110,7 +105,7 @@ class Helper
      */
     public function ending($count, $one, $two, $five)
     {
-        return ($count % 10 == 1 && $count % 100 != 11) ? $one : ($count % 10 >= 2 && $count % 10 <= 4 && ($count % 100 < 10 || $count % 100 >= 20) ? $two : $five);
+        return ($count % 10 === 1 && $count % 100 !== 11) ? $one : ($count % 10 >= 2 && $count % 10 <= 4 && ($count % 100 < 10 || $count % 100 >= 20) ? $two : $five);
     }
 
 
@@ -135,17 +130,17 @@ class Helper
 
         $month_mini = ['янв', 'фев', 'мар', 'апр', 'май', 'июн', 'июл', 'авг', 'сен', 'окт', 'ноя', 'дек'];
 
-        if ($param == 'dayweek') {
+        if ($param === 'dayweek') {
             $out = $days_week[$date->format('w')];
-        } elseif ($param == 'dayweekmini') {
+        } elseif ($param === 'dayweekmini') {
             $out = $days_week_mini[$date->format('w')];
-        } elseif ($param == 'month') {
+        } elseif ($param === 'month') {
             $out = $month[$date->format('n') - 1];
-        } elseif ($param == 'monthone') {
+        } elseif ($param === 'monthone') {
             $out = $month_one[$date->format('n') - 1];
-        } elseif ($param == 'monthmini') {
+        } elseif ($param === 'monthmini') {
             $out = $month_mini[$date->format('n') - 1];
-        } elseif ($param == 'current') {
+        } elseif ($param === 'current') {
             if ($date->isToday()) {
                 $out = 'сегодня';
             } elseif ($date->isYesterday()) {
@@ -157,7 +152,7 @@ class Helper
             return false;
         }
 
-        return $title ? mb_convert_case($out, MB_CASE_TITLE, "UTF-8") : $out;
+        return $title ? mb_convert_case($out, MB_CASE_TITLE, 'UTF-8') : $out;
     }
 
     /**
@@ -195,20 +190,20 @@ class Helper
         $multisort_params = array();
         foreach ($params as $i => $param) {
             if (is_string($param)) {
-                ${"param_$i"} = array();
+                ${'param_$i'} = array();
                 foreach ($put as $index => $row) {
-                    ${"param_$i"}[$index] = $row[$param];
+                    ${'param_$i'}[$index] = $row[$param];
                 }
             } else {
-                ${"param_$i"} = $params[$i];
+                ${'param_$i'} = $params[$i];
             }
 
-            $multisort_params[] = &${"param_$i"};
+            $multisort_params[] = &${'param_$i'};
         }
 
         $multisort_params[] = &$put;
 
-        call_user_func_array("array_multisort", $multisort_params);
+        call_user_func_array('array_multisort', $multisort_params);
 
         return $put;
     }
