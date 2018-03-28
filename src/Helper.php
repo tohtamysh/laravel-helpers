@@ -146,7 +146,7 @@ class Helper
             } elseif ($date->isYesterday()) {
                 $out = 'вчера';
             } else {
-                $out = $date->format('j') . ' ' . $month[$date->format('n') - 1];
+                return false;
             }
         } else {
             return false;
