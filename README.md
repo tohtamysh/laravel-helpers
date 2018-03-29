@@ -5,40 +5,53 @@
 ### Installation
 
 ##### run composer
+
 ```bash
 composer require tohtamysh/laravel-helpers
 ```
+
 ##### add service provider
+
 Register the Service Provider by adding it to your project's providers array in app.php
+
 ``` php
 'providers' => array(
     Tohtamysh\Helper\HelperServiceProvider::class,
 );
 ```
+
 ##### add alias
+
 ```php
 'Helper' => Tohtamysh\Helper\HelperFacade::class,
 ```
+
 ### Use
-####Replace russian string to latin string
+
+#### Replace russian string to latin string
+
 ```php
 $translite_string = Helper::slug($russian_string)
 ```
-####Get correct russian ending
+
+#### Get correct russian ending
+
 *example return 'домов'*
+
 ```php
 $end = Helper::ending(55, 'дом', 'дома', 'домов')
 ```
-####Get russian date
+
+#### Get russian date
+
 *example return 'Января'*
+
 ```php
 $russian_date = Helper::russianDate('2017-01-02', 'month', true)
 ```
+
 #### Reduces image size without loss of quality.
+
 ```php
 optimizeImage($filePath)
-```
-#### Sort array
-```php
-$out = Helper::arraySort('one', SORT_DESC, 'two', SORT_DESC, $array);
 ```
