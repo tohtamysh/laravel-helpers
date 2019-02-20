@@ -9,89 +9,6 @@ use Symfony\Component\Process\Process;
 
 class Helper
 {
-    public function slug(string $string): string
-    {
-        $separator = '_';
-
-        $rules = [
-            'А' => 'A',
-            'Б' => 'B',
-            'В' => 'V',
-            'Г' => 'G',
-            'Д' => 'D',
-            'Е' => 'E',
-            'Ё' => 'E',
-            'Ж' => 'J',
-            'З' => 'Z',
-            'И' => 'I',
-            'Й' => 'Y',
-            'К' => 'K',
-            'Л' => 'L',
-            'М' => 'M',
-            'Н' => 'N',
-            'О' => 'O',
-            'П' => 'P',
-            'Р' => 'R',
-            'С' => 'S',
-            'Т' => 'T',
-            'У' => 'U',
-            'Ф' => 'F',
-            'Х' => 'H',
-            'Ц' => 'TS',
-            'Ч' => 'CH',
-            'Ш' => 'SH',
-            'Щ' => 'SCH',
-            'Ъ' => '',
-            'Ы' => 'YI',
-            'Ь' => '',
-            'Э' => 'E',
-            'Ю' => 'YU',
-            'Я' => 'YA',
-            'а' => 'a',
-            'б' => 'b',
-            'в' => 'v',
-            'г' => 'g',
-            'д' => 'd',
-            'е' => 'e',
-            'ё' => 'e',
-            'ж' => 'j',
-            'з' => 'z',
-            'и' => 'i',
-            'й' => 'y',
-            'к' => 'k',
-            'л' => 'l',
-            'м' => 'm',
-            'н' => 'n',
-            'о' => 'o',
-            'п' => 'p',
-            'р' => 'r',
-            'с' => 's',
-            'т' => 't',
-            'у' => 'u',
-            'ф' => 'f',
-            'х' => 'h',
-            'ц' => 'ts',
-            'ч' => 'ch',
-            'ш' => 'sh',
-            'щ' => 'sch',
-            'ъ' => 'y',
-            'ы' => 'yi',
-            'ь' => '',
-            'э' => 'e',
-            'ю' => 'yu',
-            'я' => 'ya',
-        ];
-
-        $string = trim($string);
-
-        $string = strtr($string, $rules);
-
-        $string = mb_strtolower($string);
-
-        return preg_replace('/([^a-zA-Z0-9])+/', $separator, str_replace(' ', $separator, $string));
-    }
-
-
     /**
      * Return correct russian ending
      *
@@ -174,4 +91,26 @@ class Helper
             $process->run();
         }
     }
+
+    /**
+     * Format time
+     * @param $secconds integer
+     * @return string
+     */
+    public function timeFormat($secconds)
+    {
+        $minutes = intdiv($secconds, 60);
+
+        if ($minutes < 10) {
+            $minutes = '0' . $minutes;
+        }
+
+        $sec = $secconds % 60;
+
+        if ($sec < 10) {
+            $sec = '0' . $sec;
+        }
+
+        return $minutes . ':' . $sec;
+}
 }

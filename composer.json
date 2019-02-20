@@ -14,8 +14,7 @@
   ],
   "homepage": "https://github.com/tohtamysh/laravel-helpers",
   "require": {
-    "php": ">=5.5.9",
-    "ext-mbstring": "*",
+    "php": ">=7.0",
     "illuminate/support": "5.*",
     "nesbot/carbon": "~1.21"
   },

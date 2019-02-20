@@ -2,13 +2,14 @@
 
 [![Latest Stable Version](https://poser.pugx.org/tohtamysh/laravel-helpers/v/stable)](https://packagist.org/packages/tohtamysh/laravel-helpers) [![License](https://poser.pugx.org/tohtamysh/laravel-helpers/license)](https://packagist.org/packages/tohtamysh/laravel-helpers)
 
-### Installation
+## Installation
 
 ##### run composer
 
 ```bash
 composer require tohtamysh/laravel-helpers
 ```
+### For Laravel < 5.5
 
 ##### add service provider
 
@@ -27,12 +28,6 @@ Register the Service Provider by adding it to your project's providers array in 
 ```
 
 ### Use
-
-#### Replace russian string to latin string
-
-```php
-$translite_string = Helper::slug($russian_string)
-```
 
 #### Get correct russian ending
 
@@ -54,4 +49,12 @@ $russian_date = Helper::russianDate('2017-01-02', 'month', true)
 
 ```php
 optimizeImage($filePath)
+```
+
+#### Format time
+
+*example return '01:20'*
+
+```php
+$end = Helper::timeFormat(60)
 ```
