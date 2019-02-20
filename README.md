@@ -56,5 +56,5 @@ optimizeImage($filePath)
 *example return '01:20'*
 
 ```php
-$end = Helper::timeFormat(60)
+$end = Helper::timeFormat(80)
 ```
